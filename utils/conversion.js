@@ -1,8 +1,10 @@
 /*
 This is a utility file that holds methods for dealing with various calculations in the app
-such as working with weather codes, 
-
+such as working with weather codes, converting from celcius to farenheit, and converting wind speed
+into beauforts etc.
 */
+
+const conversionMethod = {
 // Weather Codes Hash Map
 let weathercodes = new Map();
 
@@ -16,7 +18,7 @@ weathercodes.set(700, "Snow");
 weathercodes.set(800, "Thunder");
 
 // Beaufort Scale Conversion
-const beaufort = {
+
   beaufortConversion(windSpeed) {
     if(windSpeed == 0) {
       return 0;
@@ -59,5 +61,5 @@ const beaufort = {
     }
   }
 }
-
-module.exports = weathercodes, beaufort;
+}
+module.exports = conversionMethod;
