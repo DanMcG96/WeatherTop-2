@@ -1,8 +1,9 @@
 'use strict';
 
 const logger = require('../utils/logger');
+const stationCollection = require('./reading-store.json').stationCollection;
 
-const station = {
+/*const station = {
   title: 'Tramore',
   readings: [
     {
@@ -13,5 +14,5 @@ const station = {
     }
   ]
 };
-
-module.exports = station;
+*/
+module.exports = stationCollection;

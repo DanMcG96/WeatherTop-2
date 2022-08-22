@@ -1,16 +1,16 @@
 "use strict";
 
 const logger = require("../utils/logger");
-const station = require("../models/reading-store.js");
+const stationCollection = require("../models/reading-store.js");
 
 const dashboard = {
   index(request, response) {
     logger.info("dashboard rendering");
     const viewData = {
       title: "Template 1 Dashboard",
-      station: station,
+      station: stationCollection,
     };
-    logger.info('Rendering', station);
+    logger.info('Rendering', );
     response.render("dashboard", viewData);
   },
 };
