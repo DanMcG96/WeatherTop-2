@@ -1,0 +1,2 @@
+let weathercodes = new Map();
+
