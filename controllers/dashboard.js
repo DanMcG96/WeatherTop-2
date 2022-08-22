@@ -3,6 +3,7 @@
 const logger = require("../utils/logger");
 
 const station = {
+  title: 'Tramore',
   reading: [
     {
       code: '100',
@@ -18,7 +19,7 @@ const dashboard = {
     logger.info("dashboard rendering");
     const viewData = {
       title: "Template 1 Dashboard",
-      station: reading
+      station: station
     };
     response.render("dashboard", viewData);
   },
