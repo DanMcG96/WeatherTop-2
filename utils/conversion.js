@@ -72,6 +72,11 @@ const conversions = {
   },
   windChill(temp, windSpeed) {
     return (13.12 + 0.6215(temp) - 11.37(windSpeed^0.16) + 0.3965(temp)(windSpeed^0.16));
+  },
+  windCompass(windDirection) {
+    if(windDirection >=  && windDirection <=) {
+       return ;
+       }
   }
    
 }
