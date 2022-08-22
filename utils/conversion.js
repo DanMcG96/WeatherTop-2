@@ -112,20 +112,20 @@ const conversions = {
     else if(windDirection >= 213.75 && windDirection <= 236.25) {
         return "South West" ;    
        }
-    else if(windDirection >= 236.26 && windDirection <= ) {
-        return "" ;    
+    else if(windDirection >= 236.26 && windDirection <= 258.75) {
+        return "West South West" ;    
        }
-    else if(windDirection >= && windDirection <= ) {
-        return "" ;    
+    else if(windDirection >= 258.76 && windDirection <= 281.25) {
+        return "West" ;    
        }
-    else if(windDirection >= && windDirection <= ) {
-        return "" ;    
+    else if(windDirection >= 281.26 && windDirection <= 303.75) {
+        return "West North West" ;    
        }
-    else if(windDirection >= && windDirection <= ) {
-        return "" ;    
+    else if(windDirection >= 303.76 && windDirection <= 326.25) {
+        return "North West" ;    
        }
-    else if(windDirection >= && windDirection <= ) {
-        return "" ;    
+    else if(windDirection >= 326.26 && windDirection <= 348.74) {
+        return "North North West" ;    
        }
   }
    
