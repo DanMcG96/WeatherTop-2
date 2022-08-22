@@ -8,8 +8,9 @@ const dashboard = {
     logger.info("dashboard rendering");
     const viewData = {
       title: "Template 1 Dashboard",
-      station: station
+      station: station,
     };
+    logger.info('Rendering', station);
     response.render("dashboard", viewData);
   },
 };
