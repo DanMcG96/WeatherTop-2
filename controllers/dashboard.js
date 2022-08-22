@@ -1,18 +1,7 @@
 "use strict";
 
 const logger = require("../utils/logger");
-
-const station = {
-  title: 'Tramore',
-  reading: [
-    {
-      code: '100',
-      temp: '10',
-      windSpeed: '15',
-      pressure: '1000',
-    }
-  ]
-}
+const station = require("../models/reading-store.js");
 
 const dashboard = {
   index(request, response) {
