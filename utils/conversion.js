@@ -1,4 +1,5 @@
 /*
+CONVERSIONS
 This is a utility file that holds methods for dealing with various calculations in the app
 such as working with weather codes, converting from celcius to farenheit, and converting wind speed
 into beauforts etc.
@@ -66,7 +67,13 @@ const conversions = {
     }
   },
   // Celsius to Farenheit
-  
+  celsiusToFarenheit(temp) {
+    return (temp * 1.8) + 32;
+  },
+  windChill(temp, windSpeed) {
+    return (13.12 + 0.6215(temp) - 11.37(windSpeed^0.16) + 0.3965(temp)(windSpeed^0.16));
+  }
+   
 }
 
 
