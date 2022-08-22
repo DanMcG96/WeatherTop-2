@@ -74,9 +74,10 @@ const conversions = {
     return (13.12 + 0.6215(temp) - 11.37(windSpeed^0.16) + 0.3965(temp)(windSpeed^0.16));
   },
   windCompass(windDirection) {
-    if(windDirection >=  && windDirection <=) {
-       return ;
+    if(windDirection <=348.75  && windDirection >= 11.25) {
+       return "North" ;
        }
+    else if(windDirection >= && windDirection <= )
   }
    
 }
