@@ -4,8 +4,9 @@ such as working with weather codes, converting from celcius to farenheit, and co
 into beauforts etc.
 */
 
-const conversionMethod = {
+
 // Weather Codes Hash Map
+  
 let weathercodes = new Map();
 
 weathercodes.set(100,"Clear");
@@ -17,8 +18,12 @@ weathercodes.set(600, "Rain");
 weathercodes.set(700, "Snow");
 weathercodes.set(800, "Thunder");
 
-// Beaufort Scale Conversion
-
+const conversions = {
+  //WeatherCode conversion
+  currentWeather(code) {
+    return weathercodes.get(code);
+  },
+  // Beaufort Conversion
   beaufortConversion(windSpeed) {
     if(windSpeed == 0) {
       return 0;
@@ -59,7 +64,10 @@ weathercodes.set(800, "Thunder");
     else if(windSpeed >= 117) {
       return 12;
     }
-  }
+  },
+  // Celsius to Farenheit
+  
 }
-}
-module.exports = conversionMethod;
+
+
+module.exports = conversions;
