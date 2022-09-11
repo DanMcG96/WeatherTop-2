@@ -7,5 +7,12 @@ This project allows users to sign up and log on.
 Users can add weather stations unique to their account
 Users can add, delete and update information on weather station readings and view information on latest readings
 
+Bugs:
+User cannot edit personal details
+
+Sources:
+W3schools for information on Date() object
+Various labs and lectures from Web Development I and Web Development II
+
 This is an Express.js project, designed to work well with the Glitch development environment. It includes basic express setup, templating, routing, JSON based model and session support.
 
