@@ -1,11 +1,8 @@
 {{#each station}}
-  <section class="ui stacked segment">
+ <section class="ui inverted cream stacked segment">
     <h2 class="ui header">
-      {{title}}
-    </h2>
-    <p>
-      Open to see weather information for {{title}}
-    </p>
+      {{title}} <i class="{{weatherIcon}} icon"></i>
+    
     <a href="/station/{{id}}" class="ui inverted icon button">
       <i class="icon blue folder open"></i>
     </a>

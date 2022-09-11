@@ -1,16 +1,11 @@
-Welcome to WeatherTop 2 App
+Welcome to the WeatherTop Version 2
+==============================
 
-A small app for recording data from Weather Stations
-Users can:
+This is my Weather Top Project for Web Development 2 for the SETU Higher Diploma in Computer Science 2022.
 
-Register and create an account
-Add and Delete Stations View Stations and see latest readings
-Edit and delete stations & readings
-Site is deployed globally on heroku at https://weathertopversion2.herokuapp.com
+This project allows users to sign up and log on.
+Users can add weather stations unique to their account
+Users can add, delete and update information on weather station readings and view information on latest readings
 
-Sources: Various labs and lecture videos from Web Development II module from semester 1.5 of the SETU Higher Diploma in Computer Science 
-W3Schools for information on using the built in Date() function to create timestamps for the station readings
+This is an Express.js project, designed to work well with the Glitch development environment. It includes basic express setup, templating, routing, JSON based model and session support.
 
-Bugs:
-
-In order for methods in 'station-analytics.js' to not cause an error there must be at least 1 station reading preloaded into the station User cannot edit personal details but I left the icon in place as I want to try and develop the application further as I advance my abilities

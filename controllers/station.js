@@ -6,56 +6,52 @@ const stationAnalytics = require("../utils/station-analytics");
 const uuid = require('uuid');
 
 
+
 const station = {
+  
   index(request, response) {
     const stationId = request.params.id;
     const station = stationStore.getStation(stationId); 
     const code = request.params.code;
-    const windSpeed = request.params.windSpeed;
-    const windDirection = request.params.windDirection;
-    const temp = request.params.temp;
-    const lastReading = stationAnalytics.getLastReading(station);
-    const doWeather = stationAnalytics.getWeatherCode(request);
-    const dynamicIcon = stationAnalytics.getWeatherCode(request);
-    const dynamicIconColour = stationAnalytics.getWeatherCode(request);
-    const beaufort = stationAnalytics.getBeaufort(request);
-    const tempInFarenheit = stationAnalytics.tempConversion(request);
-    const windChill = stationAnalytics.windChill(request);
-    const windCompass = stationAnalytics.windCompass(request);
- //   const minTemp = stationAnalytics.maxMinTemp(request);
- //   const maxTemp = stationAnalytics.maxMinTemp(request);
- //   const tempInFarenheit = (lastReading.temp * 1.8) + 32;
-  
-    
- /*  let doWeather = null;
-   if (lastReading.code == 100)  { doWeather = "That's a start"}
-  else if(lastReading.code == 200) {doWeather = "Working"}
-  else if(lastReading.code == 300) {doWeather = "Working better"}
-  else if(lastReading.code == 400) {doWeather = "Working Even Better"}
-  else if(lastReading.code == 500) {doWeather = "Almost There"}
-  else if(lastReading.code == 600) {doWeather = "That's the stuff"}
-  else if(lastReading.code == 700) {doWeather = "One more to go"}
-  else if(lastReading.code == 800) {doWeather = "Fini"}
-*/    
- 
-    logger.info('Station id = ' + stationId);
+      
+      const weatherIcon = stationAnalytics.weatherIcon(request);
+      const windDirection = request.params.windDirection;
+      const temp = request.params.temp;
+      const lastReading = stationAnalytics.getLastReading(station);
+      const doWeather = stationAnalytics.getWeatherCode(request);
+      const beaufort = stationAnalytics.getBeaufort(request);
+      const tempInFarenheit = stationAnalytics.tempConversion(request);
+      const windChill = stationAnalytics.windChill(request);
+      const windCompass = stationAnalytics.windCompass(request);
+      const minTemp = stationAnalytics.minTemp(station);
+      const maxTemp = stationAnalytics.maxTemp(station);
+      const minWindSpeed = stationAnalytics.minWindSpeed(station);
+      const maxWindSpeed = stationAnalytics.maxWindSpeed(station);
+      const minPressure = stationAnalytics.minPressure(station);
+      const maxPressure = stationAnalytics.maxPressure(station);
+      const hot = stationAnalytics.hotIcon(request);
+      
+  logger.info('Station id = ' + stationId);
     const viewData = {
       title: 'Station',
       station: stationStore.getStation(stationId),
       doWeather: doWeather,
-      dynamicIcon: dynamicIcon,
-      dynamicIconColour: dynamicIconColour,
       beaufort: beaufort,
-      temp: temp,
-      tempInFarenheit: tempInFarenheit,
-      windChill: windChill,
-      lastReading: lastReading,
-      windCompass: windCompass,
-   //   minTemp: minTemp,
-  //    maxTemp: maxTemp
-    
-      
-    };
+        temp: temp,
+        tempInFarenheit: tempInFarenheit,
+        windChill: windChill,
+        lastReading: lastReading,
+        windCompass: windCompass,
+        minTemp: minTemp,
+        maxTemp: maxTemp,
+        minWindSpeed: minWindSpeed,
+        maxWindSpeed: maxWindSpeed,
+        minPressure: minPressure,
+        maxPressure: maxPressure,
+        hot: hot,
+        weatherIcon
+        
+  };
     response.render('station', viewData);
   },
   
@@ -70,15 +66,43 @@ const station = {
   },
   
   addReading(request, response) {
+    
+    let clock = new Date();
+    let hours = 1+(clock.getHours());
+    let minutes = clock.getMinutes();
+    let seconds = clock.getSeconds();
+    let hoursFormatCorrection = null;
+    let minutesFormatCorrection = null;
+    let secondsFormatCorrection = null;
+    let amOrPm = "AM"
+    
+    if(clock.getHours() < 10) { hoursFormatCorrection = "0";}
+    
+    if(clock.getHours() > 12) { amOrPm = "PM";}
+    
+    if(clock.getMinutes() < 10) { minutesFormatCorrection = "0"; }
+    
+    if(clock.getSeconds() < 10) { secondsFormatCorrection = "0"; }
+    
+    let date = clock.toLocaleDateString();
+    
     const stationId = request.params.id;
     const station = stationStore.getStation(stationId);
     const newReading = {
       id: uuid.v1(),
+      hours: hours,
+      minutes: minutes,
+      seconds: seconds,
+      amOrPm: amOrPm,
+      hoursFormatCorrection: hoursFormatCorrection,
+      minutesFormatCorrection: minutesFormatCorrection,
+      secondsFormatCorrection: secondsFormatCorrection,
+      date: date,
       code: request.body.code,
-      temp: request.body.temp,
-      windSpeed: request.body.windSpeed,
-      windDirection: request.body.windDirection,
-      pressure: request.body.pressure,
+      temp: Number(request.body.temp),
+      windSpeed: Number(request.body.windSpeed),
+      windDirection: Number(request.body.windDirection),
+      pressure: Number(request.body.pressure),
     };
     stationStore.addReading(stationId, newReading);
     response.redirect('/station/' + stationId)
@@ -93,32 +117,5 @@ module.exports = station;
 
 
 
-/*if(lastReading.code == 100) {
-weather = newMap.get(100);
-} 
-else if(lastReading.code == 200) {
-weather = newMap.get(200);
-}
-else if(lastReading.code == 300) {
-weather = newMap.get(300);
-}
-else if(lastReading.code == 400) {
-weather = newMap.get(400);
-}
-else if(lastReading.code == 500) {
-weather = newMap.get(500);
-}
-else if(lastReading.code == 600) {
-weather = newMap.get(600);
-}
-else if(lastReading.code == 700) {
-weather = newMap.get(700);
-}
-else if(lastReading.code == 800) {
-weather = newMap.get(800);
-}
-else {
-  weather = "No valid readings found";
-}
- */ 
+ 
 

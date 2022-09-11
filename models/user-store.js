@@ -3,7 +3,7 @@
 const _ = require('lodash');
 const JsonStore = require('./json-store');
 
-const userStore = {
+const userstore = {
 
   store: new JsonStore('./models/user-store.json', { users: [] }),
   collection: 'users',
@@ -17,13 +17,25 @@ const userStore = {
     this.store.save();
   },
 
-  getUserById(id) {
-    return this.store.findOneBy(this.collection, { id: id });
-  },
-
   getUserByEmail(email) {
     return this.store.findOneBy(this.collection, { email: email });
   },
+  
+  getUserById(id) {
+    return this.store.findOneBy(this.collection, { id: id });
+  },
+  
+  getUserByPassword(password) {
+    return this.store.findOneBy(this.collection, { password: password });
+  },
+  
+  updateUser(user, updatedUser) {
+    user.firstName = updatedUser.firstName;
+    user.lastName = updatedUser.lastName;
+    user.email = updatedUser.email;
+    user.password = updatedUser.password;
+    this.store.save();
+  }
 };
 
-module.exports = userStore;
+module.exports = userstore;
