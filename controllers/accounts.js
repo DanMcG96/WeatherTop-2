@@ -49,7 +49,7 @@ const accounts = {
     } else {
       response.redirect('/login');
     }
-  }, 
+  },
 
   getCurrentUser(request) {
     const userEmail = request.cookies.station;

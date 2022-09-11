@@ -13,10 +13,6 @@ const stationStore = {
   getAllStations() {
     return this.store.findAll(this.collection);
   },
-  
-  getUserStations(userid) {
-    return this.store.findBy(this.collection, { userid: userid });
-  },
 
   getStation(id) {
     return this.store.findOneBy(this.collection, { id: id });
@@ -38,7 +34,10 @@ const stationStore = {
     this.store.save();
   },
   
-  
+  getUserStations(userid) {
+    return this.store.findBy(this.collection, { userid: userid })
+  },
+
   addReading(id, reading) {
     const station = this.getStation(id);
     station.readings.push(reading);
@@ -53,21 +52,20 @@ const stationStore = {
   },
   
   getReading(id, readingId) {
-    const station = this.store.findOneBy(this.collection, {id: id });
+    const station = this.store.findOneBy(this.collection, { id: id });
     const readings = station.readings.filter(reading => reading.id == readingId);
     return readings[0];
   },
   
   updateReading(reading, updatedReading) {
-    reading.code = updatedReading.code;
+    reading.code = updatedReading.title;
     reading.temp = updatedReading.temp;
     reading.windSpeed = updatedReading.windSpeed;
     reading.windDirection = updatedReading.windDirection;
     reading.pressure = updatedReading.pressure;
     this.store.save();
-  }
     
-  
+  }
 };
 
 module.exports = stationStore;
